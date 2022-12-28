@@ -30,10 +30,7 @@ jobs:
       env:
        DOCKER_USER: ${{ secrets.DOCKER_USER }}
        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-       
-    - name: Docker run
-      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-   
+        
     - name: Build Container image
       run: docker build . --file docker/Dockerfile -t bookappointment:latest 
     
