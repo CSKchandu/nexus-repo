@@ -22,7 +22,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml -DskipTests
       
-    #- name: Docker login
+    - name: Build image
+      run: cp -R docker target/ && cp target/*.jar docker/
+      
+    #- name: Docker login 
      # uses: docker/login-action@v2
      # with:
      #  username: ${{ secrets.DOCKER_USERNAME }}
