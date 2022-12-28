@@ -34,7 +34,7 @@ jobs:
     - name: Build & push Docker image
       uses: docker/login-action@v2
       with:
-       image: repo/image
+       image: chandu7781/bookappointment
        tags: v1, latest
        registry: docker.io
        dockerfile: docker/Dockerfile
