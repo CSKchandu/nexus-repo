@@ -22,24 +22,21 @@ jobs:
       
     - name: docker login
       uses: docker/login-action@v2
-      env:
-        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run:
-         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build Docker image
-      run: docker build . --file docker/Dockerfile -t bookappointment:latest 
-    - name: Docker Push
-      run: docker push chandu7781/bookapppointment:latest
         #cache: maven
-   # - name: Build image
-    #  run: cp -R docker target/ && cp target/*.jar docker/
+    - name: Build image
+      run: cp -R docker target/ && cp target/*.jar docker/
       
-    #- name: Docker login
-     # uses: docker/login-action@v2
-      #with:
-       #username: ${{ secrets.DOCKER_USERNAME }}
-       #password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Docker login
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
          
-    #- name: Build Container image
-     # run: docker build . --file docker/Dockerfile -t bookappointment:latest 
+    - name: Build and Push Docker image
+      uses: docker/login-action@v2
+      with:
+         push: true
+         tag: chandu7781/bookappointment:latest
+        
+      #run: docker build . --file docker/Dockerfile -t bookappointment:latest 
+      
