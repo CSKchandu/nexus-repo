@@ -35,7 +35,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
        image: chandu7781/bookappointment
-       tags: bookappointment:latest
+       tags: latest
        registry: docker.io
        dockerfile: docker/Dockerfile
        username: ${{ secrets.DOCKER_USERNAME }}
