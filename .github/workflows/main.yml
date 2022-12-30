@@ -36,7 +36,7 @@ jobs:
     - name: Push the image to nexus repo
       run: |
        docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://3.110.151.212:8083
-       docker tag bookappointment:latest 3.110.151.212:8083/java-maven-project/bookappointment:v1
+       docker tag chandu7781/bookappointment:latest 3.110.151.212:8083/java-maven-project/chandu7781/bookappointment:v1
        docker push 3.110.151.212:8083/java-maven-project/bookappointment:v1
     
    # - name: Docker push
