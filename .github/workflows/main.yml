@@ -66,8 +66,8 @@ jobs:
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://13.232.182.52:8083
-         docker tag bookappointment:latest 13.232.182.52:8083/java-maven-project/bookappointment::$(git rev-parse --short HEAD)
-         docker push 13.232.182.52:8083/java-maven-project/bookappointment::$(git rev-parse --short HEAD)
+         docker tag bookappointment:latest 13.232.182.52:8083/java-maven-project/bookappointment:$(git rev-parse --short HEAD)
+         docker push 13.232.182.52:8083/java-maven-project/bookappointment:$(git rev-parse --short HEAD)
         
      # - name: Docker push
     #  run: docker push ${{ secrets.DOCKER_USER }}/bookappointment:latest
