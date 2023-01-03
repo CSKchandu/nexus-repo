@@ -27,6 +27,14 @@ jobs:
      # - name: Get current date
       #  id: date
        # run: echo "::set-output name=date::$(date +'%Y-%m-%d')"  
+      - name: Generate build ID
+        id: prep
+        run: |
+          branch=${GITHUB_REF##*/}
+          sha=${GITHUB_SHA::8}
+          ts=$(date +%s)
+          echo "::set-output name=BUILD_ID::${branch}-${sha}-${ts}" 
+       
       - name: Build image
         run: cp -R docker target/ && cp target/*.jar docker/
       - name: Build docker image
