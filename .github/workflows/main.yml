@@ -27,11 +27,6 @@ jobs:
      # - name: Get current date
       #  id: date
        # run: echo "::set-output name=date::$(date +'%Y-%m-%d')"  
-        
-      - name: Set MY_DATE
-        run: echo "MY_DATE=date +'%Y-%m-%d-%H.%M'"
-      - name: Test MY_DATE 
-        run: echo ${{ env.MY_DATE }}  
       - name: Build image
         run: cp -R docker target/ && cp target/*.jar docker/
       - name: Build docker image
