@@ -34,13 +34,30 @@ jobs:
           #sha=${GITHUB_SHA::8}
           #ts=$(date +%s)
           #echo "::set-output name=BUILD_ID::${branch}-${sha}-${ts}" 
+     # - name: Docker meta
+      #  id: meta
+       # uses: docker/metadata-action@v4
+        #with:
+         # images: bookappointment:latest
+          #tags: |
+           # type=raw,value={{date 'YYYYMMDD'}}
+            
+        env:
+         DOCKER_IMAGE: 13.232.182.52:8083/bookappointment:latest
+ 
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: bookappointment:latest
+          images: ${{ env.DOCKER_IMAGE }}
           tags: |
-            type=raw,value={{date 'YYYYMMDD'}}
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
       - name: Build image
         run: cp -R docker target/ && cp target/*.jar docker/
       - name: Build docker image
