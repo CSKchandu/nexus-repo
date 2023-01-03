@@ -43,7 +43,7 @@ jobs:
            # type=raw,value={{date 'YYYYMMDD'}}
             
         env:
-         DOCKER_IMAGE: 13.232.182.52:8083/bookappointment:latest
+         DOCKER_IMAGE: 13.232.182.52:8083/chandu7781/bookappointment
  
       - name: Docker meta
         id: meta
