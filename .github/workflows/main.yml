@@ -34,17 +34,17 @@ jobs:
           #sha=${GITHUB_SHA::8}
           #ts=$(date +%s)
           #echo "::set-output name=BUILD_ID::${branch}-${sha}-${ts}" 
-      - name: Docker meta
+      #- name: Docker meta
         #id: meta
         #uses: docker/metadata-action@v4
        # with:
          # images: bookappointment:latest
           #tags: |
            # type=raw,value={{date 'YYYYMMDD'}}      
-        run:  |
-           image="bookappointment:latest"  
-           timestamp=$(date +%Y%m%d%H%M%S)
-           tag=$image:$timestamp
+       # run:  |
+        #   image="bookappointment:latest"  
+         #  timestamp=$(date +%Y%m%d%H%M%S)
+          # tag=$image:$timestamp
  
      # - name: Docker meta
       #  id: meta
@@ -66,8 +66,8 @@ jobs:
       - name: Push the image to nexus repo
         run: |
          docker login -u admin -p ${{ secrets.NEXUS_PASSWORD }} http://13.232.182.52:8083
-         docker tag bookappointment:latest 13.232.182.52:8083/java-maven-project/bookappointment:$tag
-         docker push 13.232.182.52:8083/java-maven-project/bookappointment:$tag
+         docker tag bookappointment:latest 13.232.182.52:8083/java-maven-project/bookappointment:$timestamp=$(date +%Y%m%d%H%M%S)
+         docker push 13.232.182.52:8083/java-maven-project/bookappointment:$timestamp=$(date +%Y%m%d%H%M%S)
         
      # - name: Docker push
     #  run: docker push ${{ secrets.DOCKER_USER }}/bookappointment:latest
